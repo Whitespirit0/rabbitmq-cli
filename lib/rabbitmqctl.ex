@@ -102,6 +102,8 @@ defmodule RabbitMQCtl do
       _ ->
         options = parsed_options |> merge_all_defaults |> normalise_options
 
+        :rabbit_env.get_context_before_logging_init(options[:node])
+
         try do
           do_exec_parsed_command(unparsed_command, output_fun, arguments, command, options)
         catch _error_type, err ->
