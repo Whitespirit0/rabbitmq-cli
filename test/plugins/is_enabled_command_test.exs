@@ -101,14 +101,6 @@ defmodule PluginIsEnabledCommandTest do
       {:validation_failure, :plugins_dir_does_not_exist}
   end
 
-  test "validate: failure to load the rabbit application is reported as an error", context do
-    opts = context[:opts] |> Map.merge(%{online: false,
-                                         offline: true}) |> Map.delete(:rabbitmq_home)
-    assert {:validation_failure, {:unable_to_load_rabbit, :rabbitmq_home_is_undefined}} ==
-      @command.validate_execution_environment(["rabbitmq_stomp"], opts)
-  end
-
-
   test "run: when given a single enabled plugin, reports it as such", context do
     opts = context[:opts] |> Map.merge(%{online: true, offline: false})
     assert match?({:ok, _},
