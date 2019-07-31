@@ -129,7 +129,7 @@ install: $(ESCRIPTS)
 ifdef PREFIX
 	$(gen_verbose) mkdir -p "$(DESTDIR)$(PREFIX)"
 	$(verbose) $(foreach script,$(ACTUAL_ESCRIPTS), \
-		cmp "$(script)" "$(DESTDIR)$(PREFIX)/$(notdir $(script))" || \
+		cmp -s "$(script)" "$(DESTDIR)$(PREFIX)/$(notdir $(script))" || \
 		cp "$(script)" "$(DESTDIR)$(PREFIX)/$(notdir $(script))";)
 	$(verbose) $(foreach script,$(LINKED_ESCRIPTS), \
 		$(call link_escript,$($(notdir $(script))),$(DESTDIR)$(PREFIX)/$(notdir $(script)));)
