@@ -83,9 +83,9 @@ defmodule RabbitMQ.CLI.Core.Config do
           true -> :offline
           false -> opts[:node]
         end
-        :rabbit_env.get_context_before_logging_init(remote_node)
+        :rabbit_env.get_context(remote_node)
       false ->
-        :rabbit_env.get_context_before_logging_init()
+        :rabbit_env.get_context()
     end
     val = case name do
       :longnames -> context[:nodename_type] == :longnames
